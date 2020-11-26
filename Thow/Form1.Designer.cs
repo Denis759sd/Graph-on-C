@@ -37,6 +37,8 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.track_angle = new System.Windows.Forms.TrackBar();
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.text_angle = new System.Windows.Forms.Label();
+            this.check_cell = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.track_angle)).BeginInit();
@@ -87,12 +89,32 @@
             // track_angle
             // 
             this.track_angle.Location = new System.Drawing.Point(57, 91);
+            this.track_angle.Maximum = 90;
             this.track_angle.Name = "track_angle";
             this.track_angle.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.track_angle.Size = new System.Drawing.Size(45, 305);
             this.track_angle.TabIndex = 11;
             this.track_angle.TickStyle = System.Windows.Forms.TickStyle.Both;
             this.track_angle.Scroll += new System.EventHandler(this.track_angle_Scroll);
+            // 
+            // text_angle
+            // 
+            this.text_angle.AutoSize = true;
+            this.text_angle.Location = new System.Drawing.Point(187, 11);
+            this.text_angle.Name = "text_angle";
+            this.text_angle.Size = new System.Drawing.Size(32, 13);
+            this.text_angle.TabIndex = 12;
+            this.text_angle.Text = "Угол";
+            // 
+            // check_cell
+            // 
+            this.check_cell.AutoSize = true;
+            this.check_cell.Location = new System.Drawing.Point(318, 7);
+            this.check_cell.Name = "check_cell";
+            this.check_cell.Size = new System.Drawing.Size(80, 17);
+            this.check_cell.TabIndex = 14;
+            this.check_cell.Text = "checkBox1";
+            this.check_cell.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -101,6 +123,8 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(784, 461);
+            this.Controls.Add(this.check_cell);
+            this.Controls.Add(this.text_angle);
             this.Controls.Add(this.track_angle);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button_Stop);
@@ -128,6 +152,8 @@
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.TrackBar track_angle;
         private System.Windows.Forms.BindingSource bindingSource2;
+        private System.Windows.Forms.Label text_angle;
+        private System.Windows.Forms.CheckBox check_cell;
     }
 }
 

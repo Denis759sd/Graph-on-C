@@ -12,11 +12,10 @@ namespace Thow
 {
     public partial class Form1 : Form
     {
-        double x_min = 0, y = 0;
-        double x_max = 0;
+        double x = 0, y = 0;
         double angle = Math.PI /180;        //угол в радианах
         double al = 0;
-        double t = 0;                       //Время
+        double t = 2;                       //Время
         double V = 0;                       //Скорость
         const int g = 10;                   //Ускорение свободного радения
         int h = 0;
@@ -37,51 +36,55 @@ namespace Thow
         {
             InitializeComponent();
             textBox1.TextChanged += textBox1_TextChanged;
+            track_angle.Scroll += track_angle_Scroll;
+            
+            al = 60 * angle;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             timer1.Start();
-            h = (int)V * (int)V / 2 / g;
-            x_max = 2 * h;
-            al = 60 * angle;
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.FillRectangle(Brushes.Black, new Rectangle((int)(50 * x_min), (int)(400 - 50 * y), 5, 5));
+            e.Graphics.FillRectangle(Brushes.Black, new Rectangle((int)(50 * x), (int)(400 - 50 * y), 5, 5));
         }
 
         private void Draw(object sender, PaintEventArgs e)
         {
+            h = (int)V * (int)V / 2 / g;
 
             wX = pictureBox1.Width;
             hX = pictureBox1.Height;
 
-            x_min = (V * Math.Cos(angle)) * t;
-            y = (V * Math.Sin(angle)) * t - g * t * t / 2;
+            x = (V * Math.Cos(al)) * t;
+            y = (V * Math.Sin(al)) * t - g * t * t / 2;
 
             Bitmap flag = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             Graphics graph = Graphics.FromImage(flag);
+            if (check_cell.Checked == true)
+            {
+                graph.DrawLine(PenFromGrafic, 0, (int)((hX / 4) - 100), wX, (int)((hX / 4) - 100));
+                graph.DrawLine(PenFromGrafic, 0, (int)(hX / 4), wX, (int)(hX / 4));
+                graph.DrawLine(PenFromGrafic, 0, (int)(hX / 2), wX, (int)(hX / 2));
+                graph.DrawLine(PenFromGrafic, 0, (int)(hX / 1.25) - 20, wX, (int)(hX / 1.25) - 20);
+                graph.DrawLine(PenFromGrafic, 0, (int)(hX / 1) - 1, wX, (int)(hX / 1) - 1);
 
-            graph.DrawLine(PenFromGrafic, 0, (int)((hX / 4) - 100), wX, (int)((hX / 4) - 100));
-            graph.DrawLine(PenFromGrafic, 0, (int)(hX / 4), wX, (int)(hX / 4));
-            graph.DrawLine(PenFromGrafic, 0, (int)(hX / 2), wX, (int)(hX / 2));
-            graph.DrawLine(PenFromGrafic, 0, (int)(hX / 1.25) -20 , wX, (int)(hX / 1.25) - 20);
-            graph.DrawLine(PenFromGrafic, 0, (int)(hX / 1) -1 , wX, (int)(hX / 1) -1);
-
-            graph.DrawLine(PenFromGrafic, (int)(wX / 2), 0, (int)(wX / 2), hX);
-            graph.DrawLine(PenFromGrafic, (int)(wX / 1)-1, 0, (int)(wX / 1)-1, hX);
-            graph.DrawLine(PenFromGrafic, (int)(wX / 6) - 100, 0, (int)(wX / 6) -100, hX);
-            graph.DrawLine(PenFromGrafic, (int)(wX / 3), 0, (int)(wX / 3), hX);
-            graph.DrawLine(PenFromGrafic, (int)(wX / 4)-50, 0, (int)(wX / 4)-50, hX);
-            graph.DrawLine(PenFromGrafic, (int)(wX / 1.5), 0, (int)(wX / 1.5), hX);
-            graph.DrawLine(PenFromGrafic, (int)(wX / 1.2), 0, (int)(wX / 1.2), hX);
-
+                graph.DrawLine(PenFromGrafic, (int)(wX / 2), 0, (int)(wX / 2), hX);
+                graph.DrawLine(PenFromGrafic, (int)(wX / 1) - 1, 0, (int)(wX / 1) - 1, hX);
+                graph.DrawLine(PenFromGrafic, (int)(wX / 6) - 100, 0, (int)(wX / 6) - 100, hX);
+                graph.DrawLine(PenFromGrafic, (int)(wX / 3), 0, (int)(wX / 3), hX);
+                graph.DrawLine(PenFromGrafic, (int)(wX / 4) - 50, 0, (int)(wX / 4) - 50, hX);
+                graph.DrawLine(PenFromGrafic, (int)(wX / 1.5), 0, (int)(wX / 1.5), hX);
+                graph.DrawLine(PenFromGrafic, (int)(wX / 1.2), 0, (int)(wX / 1.2), hX);
+            }
+                
+            
             Point start = new Point(1, 400);
-            Point control1 = new Point((int)x_min , (int)y);
-            Point control2 = new Point((int)x_min * 50,(int)y *50 * (int)g);
-            Point end = new Point((int)(50 * x_min), hX - 1);
+            Point control1 = new Point((int)x, (int)(h / y));
+            Point control2 = new Point((int)x, (int)(h / y));
+            Point end = new Point((int)(x +V), hX - 1);
 
             //graph.FillRectangle(Brushes.Black, new Rectangle((int)(50 * x), (int)(400 - 50 * y),5,5));
             //graph.DrawBezier(PenFromLine, 1, 400, wX/2, hX/2, (int)(50 * x), (int)(400 - 50 * y), 0, 0);
@@ -95,7 +98,7 @@ namespace Thow
         private void button_Stop_Click(object sender, EventArgs e)
         {
             timer1.Stop();
-            x_min = 0;
+            x = 0;
             y = 0;
             t = 0;
             V = 0;
@@ -118,7 +121,8 @@ namespace Thow
 
         private void track_angle_Scroll(object sender, EventArgs e)
         {
-            angle = Convert.ToDouble(track_angle.Value);
+            angle = track_angle.Value;
+            //sal = track_angle.Value * angle;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -133,11 +137,13 @@ namespace Thow
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            t += 0.01;
-           x_min = (V * Math.Cos(al)) * t;
-           y = (V * Math.Sin(al)) * t - g * t * t/2;
-           this.Text = x_min.ToString() + " " + y.ToString() + " " + "Время: " + t + "Скорость: " + V;
-            Invalidate();
+            text_angle.Text = Math.Round(angle /al).ToString();
+
+           //t += 0.01;
+           //x = (V * Math.Cos(al)) * t;
+           //y = (V * Math.Sin(al)) * t - g * t * t/2;
+           //this.Text = x.ToString() + " " + y.ToString() + " " + "Время: " + t + "Скорость: " + V;
+           //Invalidate();
         }   
     }
 
