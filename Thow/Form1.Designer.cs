@@ -38,6 +38,8 @@
             this.check_grid = new System.Windows.Forms.CheckBox();
             this.button_Stop = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.text_speed = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.track_angle)).BeginInit();
@@ -102,12 +104,32 @@
             this.label1.TabIndex = 16;
             this.label1.Text = "Угол:";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(273, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(58, 13);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Скорость:";
+            // 
+            // text_speed
+            // 
+            this.text_speed.AutoSize = true;
+            this.text_speed.Location = new System.Drawing.Point(339, 9);
+            this.text_speed.Name = "text_speed";
+            this.text_speed.Size = new System.Drawing.Size(13, 13);
+            this.text_speed.TabIndex = 18;
+            this.text_speed.Text = "0";
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(784, 461);
+            this.Controls.Add(this.text_speed);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button_Stop);
             this.Controls.Add(this.check_grid);
@@ -138,6 +160,8 @@
         private System.Windows.Forms.CheckBox check_grid;
         private System.Windows.Forms.Button button_Stop;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label text_speed;
     }
 }
 

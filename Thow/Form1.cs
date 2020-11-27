@@ -35,7 +35,6 @@ namespace Thow
             timer1.Tick += new EventHandler(timer1_Tick);
             timer1.Enabled = true;
             timer1.Interval = 1;
-            al = 80 * angle;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -53,7 +52,7 @@ namespace Thow
             wX = pictureBox1.Width;
             hX = pictureBox1.Height;
 
-            h = (int)V * (int)V / 2 / g;     
+            h = (int)V * (int)V / 2 / g;
 
             x = (V * Math.Cos(al)) * t;
             y = (V * Math.Sin(al)) * t - g * t * t / 2;
@@ -82,11 +81,18 @@ namespace Thow
             Point start = new Point(1, 400);
             Point control1 = new Point((int)(x * al), (int)(y / hX));
             Point control2 = new Point((int)(x * al), (int)(y / hX));
-            Point end = new Point((int)(x + V / al), (int)hX - 1);
+            Point end = new Point((int)(x + V), (int)hX - 1);
 
-            graph.FillRectangle(Brushes.Black, new Rectangle((int)(50 * x), (int)(400 - 50 * y),5,5));
+            //graph.FillRectangle(Brushes.Black, new Rectangle((int)(50 * x), (int)(400 - 50 * y),5,5));
             //graph.DrawBezier(PenFromLine, 1, 400, wX/2, hX/2, (int)(50 * x), (int)(400 - 50 * y), 0, 0);
-            graph.DrawBezier(PenFromLine, start, control1, control2, end);
+
+            try
+            {
+                graph.DrawBezier(PenFromLine, start, control1, control2, end);
+            }
+            catch (System.OverflowException)
+            {            }
+            
             pictureBox1.Image = flag;
         }
             
@@ -96,29 +102,32 @@ namespace Thow
             x = 0;
             y = 0;
             angle = Math.PI / 180;        
-            t = 5;                       
+            t = 10;                       
             V = 0;                                        
             h = 0;
             text_angle.Text = "0";
             al = 0;
             track_angle.Value = 0;
+            timer1.Start();
         }
 
         private void track_angle_Scroll(object sender, EventArgs e)
         {
             V = track_angle.Value;
-            al = track_angle.Value * angle;
+            al = V * angle;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             text_angle.Text = (al / angle).ToString();
-            
+            text_speed.Text = V.ToString();
+
+           
             //t += 0.01;
             //x = (V * Math.Cos(al)) * t;
             //y = (V * Math.Sin(al)) * t - g * t * t/2;
             //this.Text = x.ToString() + " " + y.ToString() + " " + "Время: " + t + "Скорость: " + V;
-            //Invalidate();
+            Invalidate();
         }   
     }
 
