@@ -23,7 +23,7 @@ namespace Thow
         int hX;
 
         Pen PenFromGrafic = new Pen(Brushes.Black);     //Карандаш для построения сетки
-        Pen PenFromLine = new Pen(Brushes.Black, 2f);   //Карандаш для построения траектории
+        Pen PenFromLine = new Pen(Brushes.Red, 2f);     //Карандаш для построения траектории
 
         public Form1()
         {

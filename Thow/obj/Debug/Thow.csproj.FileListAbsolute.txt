@@ -2,7 +2,6 @@ D:\Source\Thow\Thow\bin\Debug\Thow.exe.config
 D:\Source\Thow\Thow\bin\Debug\Thow.exe
 D:\Source\Thow\Thow\bin\Debug\Thow.pdb
 D:\Source\Thow\Thow\obj\Debug\Thow.csprojAssemblyReference.cache
-D:\Source\Thow\Thow\obj\Debug\Thow.Form1.resources
 D:\Source\Thow\Thow\obj\Debug\Thow.Properties.Resources.resources
 D:\Source\Thow\Thow\obj\Debug\Thow.csproj.GenerateResource.cache
 D:\Source\Thow\Thow\obj\Debug\Thow.csproj.CoreCompileInputs.cache
@@ -29,3 +28,4 @@ D:\Source\Thow\Thow\bin\Debug\SharpDX.MediaFoundation.xml
 D:\Source\Thow\Thow\bin\Debug\SharpDX.XAudio2.xml
 D:\Source\Thow\Thow\bin\Debug\SharpDX.XInput.xml
 D:\Source\Thow\Thow\obj\Debug\Thow.csproj.CopyComplete
+D:\Source\Thow\Thow\obj\Debug\Thow.Form1.resources
