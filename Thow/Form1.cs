@@ -55,7 +55,7 @@ namespace Thow
             //Сетка
             if (check_grid.Checked == true)
             {
-                for (int i = 0; i <= hX; i+=100)
+                for (int i = 0; i <= hX; i+=50)
                 {
                     if (i == hX)
                         graph.DrawLine(PenFromGrafic, 0, (i - 1), wX, (i - 1));
@@ -64,7 +64,7 @@ namespace Thow
                     else
                         graph.DrawLine(PenFromGrafic, 0, (hX - i), wX, (hX - i));
 
-                    for (int w = 0; w <= wX; w+=100)
+                    for (int w = 0; w <= wX; w+=50)
                     {
                         if (w == wX)
                             graph.DrawLine(PenFromGrafic, (w - 1), 0, (wX - 1), i);
@@ -115,7 +115,7 @@ namespace Thow
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            text_angle.Text = (al).ToString();
+            text_angle.Text = (al / angle).ToString();
             text_speed.Text = V.ToString();
 
             Invalidate();
