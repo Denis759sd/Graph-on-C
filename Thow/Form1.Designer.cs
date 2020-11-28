@@ -36,7 +36,7 @@
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.text_angle = new System.Windows.Forms.Label();
             this.check_grid = new System.Windows.Forms.CheckBox();
-            this.button_Stop = new System.Windows.Forms.Button();
+            this.button_Clear = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.text_speed = new System.Windows.Forms.Label();
@@ -85,15 +85,15 @@
             this.check_grid.Text = "Grid";
             this.check_grid.UseVisualStyleBackColor = true;
             // 
-            // button_Stop
+            // button_Clear
             // 
-            this.button_Stop.Location = new System.Drawing.Point(72, 30);
-            this.button_Stop.Name = "button_Stop";
-            this.button_Stop.Size = new System.Drawing.Size(75, 23);
-            this.button_Stop.TabIndex = 15;
-            this.button_Stop.Text = "Clear";
-            this.button_Stop.UseVisualStyleBackColor = true;
-            this.button_Stop.Click += new System.EventHandler(this.button_Stop_Click);
+            this.button_Clear.Location = new System.Drawing.Point(72, 30);
+            this.button_Clear.Name = "button_Clear";
+            this.button_Clear.Size = new System.Drawing.Size(75, 23);
+            this.button_Clear.TabIndex = 15;
+            this.button_Clear.Text = "Clear";
+            this.button_Clear.UseVisualStyleBackColor = true;
+            this.button_Clear.Click += new System.EventHandler(this.button_Clear_Click);
             // 
             // label1
             // 
@@ -107,7 +107,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(273, 9);
+            this.label2.Location = new System.Drawing.Point(409, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 13);
             this.label2.TabIndex = 17;
@@ -116,7 +116,7 @@
             // text_speed
             // 
             this.text_speed.AutoSize = true;
-            this.text_speed.Location = new System.Drawing.Point(339, 9);
+            this.text_speed.Location = new System.Drawing.Point(475, 9);
             this.text_speed.Name = "text_speed";
             this.text_speed.Size = new System.Drawing.Size(13, 13);
             this.text_speed.TabIndex = 18;
@@ -131,7 +131,7 @@
             this.Controls.Add(this.text_speed);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button_Stop);
+            this.Controls.Add(this.button_Clear);
             this.Controls.Add(this.check_grid);
             this.Controls.Add(this.text_angle);
             this.Controls.Add(this.track_angle);
@@ -158,7 +158,7 @@
         private System.Windows.Forms.BindingSource bindingSource2;
         private System.Windows.Forms.Label text_angle;
         private System.Windows.Forms.CheckBox check_grid;
-        private System.Windows.Forms.Button button_Stop;
+        private System.Windows.Forms.Button button_Clear;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label text_speed;

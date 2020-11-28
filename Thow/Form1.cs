@@ -17,13 +17,13 @@ namespace Thow
         double al = 0;                          //угол
         double t = 15;                          //Время
         double V = 0;                           //Скорость
-        const int g = 10;                       //Ускорение свободного радения
+        const int g = 10;                       //Ускорение свободного падения
 
         int wX;
         int hX;
 
-        Pen PenFromGrafic = new Pen(Brushes.Black); 
-        Pen PenFromLine = new Pen(Brushes.Black, 2f); 
+        Pen PenFromGrafic = new Pen(Brushes.Black);     //Карандаш для построения сетки
+        Pen PenFromLine = new Pen(Brushes.Black, 2f);   //Карандаш для построения траектории
 
         public Form1()
         {
@@ -52,22 +52,28 @@ namespace Thow
             Bitmap flag = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             Graphics graph = Graphics.FromImage(flag);
 
-            //Ссетка
+            //Сетка
             if (check_grid.Checked == true)
             {
-                graph.DrawLine(PenFromGrafic, 0, (int)((hX / 4) - 100), wX, (int)((hX / 4) - 100));
-                graph.DrawLine(PenFromGrafic, 0, (int)(hX / 4), wX, (int)(hX / 4));
-                graph.DrawLine(PenFromGrafic, 0, (int)(hX / 2), wX, (int)(hX / 2));
-                graph.DrawLine(PenFromGrafic, 0, (int)(hX / 1.25) - 20, wX, (int)(hX / 1.25) - 20);
-                graph.DrawLine(PenFromGrafic, 0, (int)(hX / 1) - 1, wX, (int)(hX / 1) - 1);
+                for (int i = 0; i <= hX; i+=100)
+                {
+                    if (i == hX)
+                        graph.DrawLine(PenFromGrafic, 0, (i - 1), wX, (i - 1));
+                    else if (i == 0)
+                        graph.DrawLine(PenFromGrafic, 0, (i + 0.1f), wX, (i + 0.1f));
+                    else
+                        graph.DrawLine(PenFromGrafic, 0, (hX - i), wX, (hX - i));
 
-                graph.DrawLine(PenFromGrafic, (int)(wX / 2), 0, (int)(wX / 2), hX);
-                graph.DrawLine(PenFromGrafic, (int)(wX / 1) - 1, 0, (int)(wX / 1) - 1, hX);
-                graph.DrawLine(PenFromGrafic, (int)(wX / 6) - 100, 0, (int)(wX / 6) - 100, hX);
-                graph.DrawLine(PenFromGrafic, (int)(wX / 3), 0, (int)(wX / 3), hX);
-                graph.DrawLine(PenFromGrafic, (int)(wX / 4) - 50, 0, (int)(wX / 4) - 50, hX);
-                graph.DrawLine(PenFromGrafic, (int)(wX / 1.5), 0, (int)(wX / 1.5), hX);
-                graph.DrawLine(PenFromGrafic, (int)(wX / 1.2), 0, (int)(wX / 1.2), hX);
+                    for (int w = 0; w <= wX; w+=100)
+                    {
+                        if (w == wX)
+                            graph.DrawLine(PenFromGrafic, (w - 1), 0, (wX - 1), i);
+                        else if(w == 0)
+                            graph.DrawLine(PenFromGrafic, (w + 0.1f), 0, (w + 0.1f), i);
+                        else
+                            graph.DrawLine(PenFromGrafic, (wX - w), 0, (wX - w), i);
+                    }
+                }
             }
                 
             
@@ -86,7 +92,7 @@ namespace Thow
             pictureBox1.Image = flag;
         }
             
-        private void button_Stop_Click(object sender, EventArgs e)
+        private void button_Clear_Click(object sender, EventArgs e)
         {
             timer1.Stop();
             x = 0;
@@ -102,14 +108,14 @@ namespace Thow
 
         private void track_angle_Scroll(object sender, EventArgs e)
         {
-                V = track_angle.Value;
-                al = V * angle;
-                t = track_angle.Value/ Math.Cos(al);
+                V =     track_angle.Value;
+                al =    V * angle;
+                t =     V / Math.Cos(al);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            text_angle.Text = (al / angle).ToString();
+            text_angle.Text = (al).ToString();
             text_speed.Text = V.ToString();
 
             Invalidate();
