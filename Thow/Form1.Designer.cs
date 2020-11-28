@@ -58,11 +58,11 @@
             // track_angle
             // 
             this.track_angle.Location = new System.Drawing.Point(12, 11);
-            this.track_angle.Maximum = 90;
+            this.track_angle.Maximum = 20;
             this.track_angle.Name = "track_angle";
             this.track_angle.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.track_angle.Size = new System.Drawing.Size(45, 437);
-            this.track_angle.TabIndex = 11;
+            this.track_angle.TabIndex = 20;
             this.track_angle.TickStyle = System.Windows.Forms.TickStyle.Both;
             this.track_angle.Scroll += new System.EventHandler(this.track_angle_Scroll);
             // 

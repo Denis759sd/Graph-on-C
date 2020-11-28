@@ -15,16 +15,12 @@ namespace Thow
         double x = 0, y = 0;
         double angle = Math.PI /180;        
         double al = 0;                          //угол
-        double t = 10;                          //Время
+        double t = 15;                          //Время
         double V = 0;                           //Скорость
         const int g = 10;                       //Ускорение свободного радения
-        int h = 0;
 
         int wX;
         int hX;
-
-        double sy;
-        double Y0;
 
         Pen PenFromGrafic = new Pen(Brushes.Black); 
         Pen PenFromLine = new Pen(Brushes.Black, 2f); 
@@ -45,23 +41,13 @@ namespace Thow
             timer1.Start();
         }
 
-        private void Form1_Paint(object sender, PaintEventArgs e)
-        {
-            e.Graphics.FillRectangle(Brushes.Black, new Rectangle((int)(50 * x), (int)(400 - 50 * y), 5, 5));
-        }
-
         private void Draw(object sender, PaintEventArgs e)
         {
             wX = pictureBox1.Width;
             hX = pictureBox1.Height;
 
-            h = (int)V * (int)V / 2 / g;
-
-            //sy = (2 * h) / (h - 0);
-            //Y0 = (2 * h) + 0 * sy;
-
             x = (V * Math.Cos(al)) * t;
-            y = V * Math.Cos(al) * t - g * t * t / 2;
+            y = (V * Math.Cos(al)) * t - g * t * t / 2;
 
             Bitmap flag = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             Graphics graph = Graphics.FromImage(flag);
@@ -86,12 +72,9 @@ namespace Thow
                 
             
             Point start = new Point(1, 400);
-            Point control1 = new Point((int)(x * al), (int)(h / hX));
-            Point control2 = new Point((int)(x * al), (int)(h / hX));
-            Point end = new Point((int)(x + V), (int)hX - 1);
-
-            //graph.FillRectangle(Brushes.Black, new Rectangle((int)(50 * x), (int)(400 - 50 * y),5,5));
-            //graph.DrawBezier(PenFromLine, 1, 400, wX/2, hX/2, (int)(50 * x), (int)(400 - 50 * y), 0, 0);
+            Point control1 = new Point((int)(x * 50), (int)(hX / y));
+            Point control2 = new Point((int)(x* 50), (int)(hX - 30 * y));
+            Point end = new Point((int)(x * 100 *t), (int)(hX - 30 * y));
 
             try
             {
@@ -111,7 +94,6 @@ namespace Thow
             angle = Math.PI / 180;        
             t = 10;                       
             V = 0;                                        
-            h = 0;
             text_angle.Text = "0";
             al = 0;
             track_angle.Value = 0;
@@ -120,11 +102,9 @@ namespace Thow
 
         private void track_angle_Scroll(object sender, EventArgs e)
         {
-          
                 V = track_angle.Value;
                 al = V * angle;
-            
-            
+                t = track_angle.Value/ Math.Cos(al);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -132,21 +112,8 @@ namespace Thow
             text_angle.Text = (al / angle).ToString();
             text_speed.Text = V.ToString();
 
-           
-            //t += 0.01;
-            //x = (V * Math.Cos(al)) * t;
-            //y = (V * Math.Sin(al)) * t - g * t * t/2;
-            //this.Text = x.ToString() + " " + y.ToString() +- " " + "Время: " + t + "Скорость: " + V;
             Invalidate();
         }   
-
-        //Производное al
-        public double F1(double x) 
-        {
-            t = x / V / Math.Cos(al);
-            y = V * Math.Cos(al) * t - g * t * t / 2;
-            return y;
-        }
     }
 
 }
